@@ -1,0 +1,40 @@
+
+.right-form {
+    -fx-background-color: linear-gradient(to bottom right, #25bcbf, #3796a7);
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px 0px;
+}
+
+.left-form {
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px 0px .4px;
+}
+
+.close {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.close:hover {
+    -fx-background-color: #ee5363;
+
+}
+
+.login-btn {
+    -fx-background-color: #25bcbf;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.login-btn:hover {
+    -fx-background-color: #3796a7;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI";
+}
+
+.main-label {
+    -fx-font-family: Papyrus;
+    -fx-font-size: 30px;
+    -fx-text-fill: #fff;
+}
