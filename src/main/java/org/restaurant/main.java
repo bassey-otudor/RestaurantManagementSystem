@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class main extends Application {
 
         stage.initStyle(StageStyle.TRANSPARENT);
 
-        stage.setTitle("Login!");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }
