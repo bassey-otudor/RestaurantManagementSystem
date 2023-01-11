@@ -10,8 +10,10 @@ import javafx.scene.control.Button;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,6 +41,9 @@ public class mainController {
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
+
+    private double x = 0;
+    private double y = 0;
 
     // login button action
     public void login () {
@@ -77,8 +82,21 @@ public class mainController {
 
                     // Switch to the next scene - the dashboard
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("dashboard.fxml")));
+
+
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
+
+                    root.setOnMousePressed((MouseEvent event) ->{
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+
+                    root.setOnMouseDragged((MouseEvent event) -> {
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+                    });
+                    stage.initStyle(StageStyle.TRANSPARENT);
                     stage.setScene(scene);
                     stage.show();
 

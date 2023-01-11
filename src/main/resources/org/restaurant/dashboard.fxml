@@ -1,22 +1,379 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.restaurant.dashboardController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <BorderPane layoutX="428.0" layoutY="173.0" prefHeight="600.3581918642928" prefWidth="1100.417879121186" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane layoutX="428.0" layoutY="173.0" prefHeight="600.3581918642928" prefWidth="1100.417879121186" styleClass="top-form" stylesheets="@../../Styles/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <AnchorPane prefHeight="40.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="35.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane prefHeight="40.0" prefWidth="1100.0" />
+                        <AnchorPane prefHeight="35.0" prefWidth="1100.0" styleClass="semi-top" stylesheets="@../../Styles/dashboard.css">
+                           <children>
+                              <Button fx:id="close" layoutX="1025.0" layoutY="8.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="39.0" styleClass="close" stylesheets="@../../Styles/dashboard.css" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="CLOSE" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="minimise" layoutX="1017.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimise" prefHeight="25.0" prefWidth="42.0" styleClass="minimise" stylesheets="@../../Styles/dashboard.css" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="MINUS" />
+                                 </graphic>
+                              </Button>
+                              <Label layoutX="33.0" layoutY="8.0" text="Royal Cuisine Management">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIcon glyphName="BUILDING" layoutX="9.0" layoutY="23.0" size="1.5em" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="178.0" prefWidth="181.0" stylesheets="@../../Styles/dashboard.css">
+                           <children>
+                              <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="57.0" layoutY="85.0" selectionFill="#fdfdfd" size="7em" />
+                              <Label layoutX="22.0" layoutY="137.0" text="UN:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="username" layoutX="57.0" layoutY="137.0" text="Bassey Otudor" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="49.0" layoutY="102.0" text="Welcome" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="nav1" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </AnchorPane>
+                        <AnchorPane layoutX="9.0" layoutY="201.0" prefHeight="352.0" prefWidth="181.0" stylesheets="@../../Styles/dashboard.css">
+                           <styleClass>
+                              <String fx:value="nav2" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                           <children>
+                              <JFXButton fx:id="dashboard_btn" layoutX="15.0" layoutY="30.0" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Dashboard" />
+                              <JFXButton fx:id="food_btn" layoutX="16.0" layoutY="86.0" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Availabe Foos/Drinks" />
+                              <JFXButton fx:id="orders_btn" layoutX="16.0" layoutY="144.0" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Orders" />
+                              <JFXButton fx:id="logout" layoutX="14.0" layoutY="312.0" styleClass="signout" stylesheets="@../../Styles/dashboard.css" text="Sign Out">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2EM" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <Separator layoutX="9.0" layoutY="193.0" prefHeight="5.0" prefWidth="183.0" />
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="565.0" prefWidth="857.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="dashboard_form" layoutX="269.0" layoutY="183.0" prefHeight="565.2537152517029" prefWidth="900.5372877964394" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="10.0" layoutY="13.0" prefHeight="173.0" prefWidth="882.0" stylesheets="@../../Styles/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="8.0" layoutY="6.0" prefHeight="161.0" prefWidth="280.0" styleClass="card1" stylesheets="@../../Styles/dashboard.css">
+                                       <children>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="17.0" layoutY="111.0" size="7EM" />
+                                          <Label layoutX="118.0" layoutY="109.0" text="Number of Customers" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dashbaord_NOC" layoutX="243.0" layoutY="21.0" text="0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="37.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="300.0" layoutY="6.0" prefHeight="161.0" prefWidth="280.0" styleClass="card2" stylesheets="@../../Styles/dashboard.css">
+                                       <children>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="DOLLAR" layoutX="20.0" layoutY="112.0" size="7EM" />
+                                          <Label layoutX="115.0" layoutY="110.0" text="Today's Income" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dashboard_TI" layoutX="217.0" layoutY="23.0" text="0.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="37.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="594.0" layoutY="6.0" prefHeight="161.0" prefWidth="280.0" styleClass="card3" stylesheets="@../../Styles/dashboard.css">
+                                       <children>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="MONEY" layoutX="21.0" layoutY="111.0" size="7EM" />
+                                          <Label layoutX="128.0" layoutY="110.0" text="Total Income" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="dashboardd_TIncome" layoutX="218.0" layoutY="23.0" text="0.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="37.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="11.0" layoutY="201.0" prefHeight="352.0" prefWidth="883.0" stylesheets="@../../Styles/dashboard.css">
+                                 <children>
+                                    <AnchorPane layoutX="16.0" layoutY="14.0" prefHeight="320.0" prefWidth="363.0" stylesheets="@../../Styles/dashboard.css">
+                                       <children>
+                                          <Label layoutX="84.0" layoutY="10.0" text="Number of Orders">
+                                             <font>
+                                                <Font name="Segoe UI" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <BarChart fx:id="dashboard_NOCChart" layoutX="-102.0" layoutY="42.0" prefHeight="278.0" prefWidth="363.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="dashboard_IChart" layoutX="397.0" layoutY="15.0" prefHeight="320.0" prefWidth="468.0" stylesheets="@../../Styles/dashboard.css">
+                                       <children>
+                                          <Label layoutX="199.0" layoutY="13.0" text="Income">
+                                             <font>
+                                                <Font name="Segoe UI" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <BarChart layoutX="14.0" layoutY="48.0" prefHeight="272.0" prefWidth="462.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="white-bg" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <Separator layoutX="11.0" layoutY="193.0" prefHeight="4.0" prefWidth="882.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="product_form" layoutX="95.0" layoutY="89.0" prefHeight="565.2537152517029" prefWidth="900.5372877964394" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Separator layoutY="12.0" orientation="VERTICAL" prefHeight="542.0" prefWidth="10.0" />
+                              <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="542.0" prefWidth="239.0" stylesheets="@../../Styles/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <JFXTextField fx:id="food_ID" focusColor="#3796a7" labelFloat="true" layoutX="22.0" layoutY="47.0" prefHeight="27.0" prefWidth="199.0" promptText="Product ID" unFocusColor="#25bcbf">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="food_name" focusColor="#3796a7" labelFloat="true" layoutX="22.0" layoutY="95.0" prefHeight="27.0" prefWidth="199.0" promptText="Product Name" unFocusColor="#25bcbf">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="food_price" focusColor="#3796a7" labelFloat="true" layoutX="22.0" layoutY="191.0" prefHeight="27.0" prefWidth="199.0" promptText="Price (CFA)" unFocusColor="#25bcbf">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font></JFXTextField>
+                                    <JFXComboBox fx:id="food_type" focusColor="#3796a7" layoutX="22.0" layoutY="144.0" prefWidth="199.0" promptText="Type" unFocusColor="#25bcbf" />
+                                    <JFXComboBox fx:id="food_status" focusColor="#3796a7" layoutX="22.0" layoutY="245.0" prefWidth="199.0" promptText="Status" unFocusColor="#25bcbf" />
+                                    <JFXButton fx:id="food_add" layoutX="22.0" layoutY="299.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Add">
+                                       <styleClass>
+                                          <String fx:value="add-btn" />
+                                          <String fx:value="btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                    </JFXButton>
+                                    <JFXButton fx:id="food_update" layoutX="130.0" layoutY="299.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Update">
+                                       <styleClass>
+                                          <String fx:value="-update-btn" />
+                                          <String fx:value="btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                    </JFXButton>
+                                    <JFXButton fx:id="food_clear" layoutX="22.0" layoutY="345.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Clear">
+                                       <styleClass>
+                                          <String fx:value="clear-btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                    </JFXButton>
+                                    <JFXButton fx:id="food_delete" layoutX="130.0" layoutY="345.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Delete">
+                                       <styleClass>
+                                          <String fx:value="delete-btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                    </JFXButton>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="274.0" layoutY="12.0" prefHeight="542.0" prefWidth="616.0" stylesheets="@../../Styles/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <JFXTextField fx:id="food_search" focusColor="#3796a7" labelFloat="true" layoutX="24.0" layoutY="44.0" prefHeight="30.0" prefWidth="280.0" promptText="Search" unFocusColor="#25bcbf">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.179104804992676" />
+                                       </font>
+                                    </JFXTextField>
+                                    <TableView layoutX="28.0" layoutY="100.0" prefHeight="431.0" prefWidth="571.0" stylesheets="@../../Styles/dashboard.css">
+                                      <columns>
+                                        <TableColumn fx:id="food_col_productID" prefWidth="75.0" text="Product ID" />
+                                        <TableColumn fx:id="food_col_productName" prefWidth="154.74636840820312" text="Product Name" />
+                                          <TableColumn fx:id="food_col_type" prefWidth="101.73126220703125" text="Type" />
+                                          <TableColumn fx:id="food_col_price" prefWidth="109.6119384765625" text="Price (CFA)" />
+                                          <TableColumn fx:id="food_col_status" prefWidth="129.6717529296875" text="Status" />
+                                      </columns>
+                                    </TableView>
+                                    <Separator layoutX="-16.0" orientation="VERTICAL" prefHeight="542.0" prefWidth="10.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="order_form" layoutX="95.0" layoutY="29.0" prefHeight="565.2537152517029" prefWidth="900.5372877964394" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Separator layoutY="10.0" orientation="VERTICAL" prefHeight="542.0" prefWidth="10.0" />
+                              <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="543.0" prefWidth="567.0" stylesheets="@../../Styles/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="order_tableView" layoutX="47.0" layoutY="65.0" prefHeight="543.0447606600644" prefWidth="567.4029689218615" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="83.10455513000488" text="Product ID" />
+                                        <TableColumn prefWidth="149.01488494873047" text="Product Name" />
+                                          <TableColumn prefWidth="97.43270874023438" text="Type" />
+                                          <TableColumn minWidth="0.0" prefWidth="127.5224609375" text="Price(CFA)" />
+                                          <TableColumn prefWidth="111.04483032226562" text="Quantity" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="595.0" layoutY="13.0" prefHeight="542.0" prefWidth="294.0" stylesheets="@../../Styles/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <JFXComboBox fx:id="order_productID" focusColor="#3796a7" layoutX="47.0" layoutY="27.0" prefHeight="30.0" prefWidth="200.0" promptText="Product ID" unFocusColor="#25bcbf" />
+                                    <JFXComboBox fx:id="order_productName" focusColor="#3796a7" layoutX="47.0" layoutY="75.0" prefHeight="30.0" prefWidth="200.0" promptText="Product Name" unFocusColor="#25bcbf" />
+                                    <Spinner fx:id="order_quantity" layoutX="47.0" layoutY="125.0" prefHeight="30.0" prefWidth="200.0" />
+                                    <JFXButton fx:id="order_addBtn" layoutX="47.0" layoutY="172.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@../../Styles/dashboard.css" text="Add">
+                                       <styleClass>
+                                          <String fx:value="add-btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                    </JFXButton>
+                                    <Label layoutX="47.0" layoutY="226.0" prefHeight="30.0" prefWidth="40.0" text="Total">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="order_total" layoutX="124.0" layoutY="226.0" prefHeight="30.0" prefWidth="123.0" styleClass="label-price" stylesheets="@../../Styles/dashboard.css" text="0.0" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="87.0" layoutY="226.0" prefHeight="30.0" prefWidth="30.0" text="CFA">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="50.0" layoutY="279.0" prefHeight="30.0" prefWidth="57.0" text="Amount">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="order_amount" focusColor="#3796a7" layoutX="126.0" layoutY="269.0" prefHeight="26.0" prefWidth="128.0" unFocusColor="#25bcbf">
+                                       <font>
+                                          <Font name="Segoe UI" size="16.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXButton fx:id="order_payBtn" layoutX="52.0" layoutY="330.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Pay">
+                                       <styleClass>
+                                          <String fx:value="-update-btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                       <font>
+                                          <Font name="Segoe UI" size="12.179104804992676" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="order_receiptBtn" layoutX="163.0" layoutY="330.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Receipt">
+                                       <styleClass>
+                                          <String fx:value="add-btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                    </JFXButton>
+                                    <JFXButton fx:id="order_receiptBtn" layoutX="53.0" layoutY="383.0" prefHeight="30.0" prefWidth="200.0" stylesheets="@../../Styles/dashboard.css" text="Remove">
+                                       <styleClass>
+                                          <String fx:value="delete-btn" />
+                                          <String fx:value="btn-shadow" />
+                                       </styleClass>
+                                    </JFXButton>
+                                 </children>
+                              </AnchorPane>
+                              <Separator layoutX="584.0" layoutY="13.0" orientation="VERTICAL" prefHeight="542.0" prefWidth="10.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
             </BorderPane>
          </children>
       </AnchorPane>
