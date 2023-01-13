@@ -3,6 +3,7 @@ package org.restaurant;
 import com.mysql.jdbc.PreparedStatement;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -15,11 +16,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class mainController {
+public class mainController implements Initializable {
 
 
     @FXML
@@ -74,6 +77,9 @@ public class mainController {
 
                 // Successful login
                 if(result.next()) {
+
+                    data.username = username.getText();
+
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -121,5 +127,10 @@ public class mainController {
     // closes the program
     public void close() {
         System.exit(0);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
     }
 }
