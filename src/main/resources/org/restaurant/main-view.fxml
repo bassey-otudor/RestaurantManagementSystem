@@ -22,12 +22,12 @@
                      </font>
                   </Label>
                   <FontAwesomeIcon fill="#25bcbf" glyphName="USER" layoutX="130.0" layoutY="82.0" size="50" />
-                  <JFXTextField fx:id="username" labelFloat="true" layoutX="50.0" layoutY="169.0" prefHeight="30.0" prefWidth="200.0" promptText="Username">
+                  <JFXTextField fx:id="username" focusColor="#3796a7" labelFloat="true" layoutX="50.0" layoutY="169.0" prefHeight="30.0" prefWidth="200.0" promptText="Username" unFocusColor="#25bcbf">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXPasswordField fx:id="password" labelFloat="true" layoutX="49.0" layoutY="215.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" />
+                  <JFXPasswordField fx:id="password" focusColor="#3796a7" labelFloat="true" layoutX="49.0" layoutY="215.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" unFocusColor="#25bcbf" />
                   <JFXButton fx:id="loginbtn" buttonType="RAISED" layoutX="114.0" layoutY="281.0" minHeight="30.0" onAction="#login" prefWidth="70.0" styleClass="login-btn" stylesheets="@../../Styles/main.css" text="Login" textAlignment="CENTER" />
                </children>
             </AnchorPane>
