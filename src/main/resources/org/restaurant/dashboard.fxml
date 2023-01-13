@@ -61,7 +61,7 @@
                                     <Font name="Segoe UI" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="username" layoutX="57.0" layoutY="137.0" text="Bassey Otudor" textFill="WHITE">
+                              <Label fx:id="username" alignment="CENTER" layoutX="57.0" layoutY="137.0" text="Bassey Otudor" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
@@ -83,10 +83,10 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <JFXButton fx:id="dashboard_btn" layoutX="15.0" layoutY="30.0" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Dashboard" />
-                              <JFXButton fx:id="food_btn" layoutX="16.0" layoutY="86.0" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Availabe Foos/Drinks" />
-                              <JFXButton fx:id="orders_btn" layoutX="16.0" layoutY="144.0" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Orders" />
-                              <JFXButton fx:id="logout" layoutX="14.0" layoutY="312.0" styleClass="signout" stylesheets="@../../Styles/dashboard.css" text="Sign Out">
+                              <JFXButton fx:id="dashboard_btn" layoutX="15.0" layoutY="30.0" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Dashboard" />
+                              <JFXButton fx:id="food_btn" layoutX="16.0" layoutY="86.0" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Availabe Foos/Drinks" />
+                              <JFXButton fx:id="orders_btn" layoutX="16.0" layoutY="144.0" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboard.css" text="Orders" />
+                              <JFXButton fx:id="logout" layoutX="14.0" layoutY="312.0" onAction="#logout" styleClass="signout" stylesheets="@../../Styles/dashboard.css" text="Sign Out">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2EM" />
                                  </graphic>
@@ -125,7 +125,7 @@
                                     </AnchorPane>
                                     <AnchorPane layoutX="300.0" layoutY="6.0" prefHeight="161.0" prefWidth="280.0" styleClass="card2" stylesheets="@../../Styles/dashboard.css">
                                        <children>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="DOLLAR" layoutX="20.0" layoutY="112.0" size="7EM" />
+                                          <FontAwesomeIcon fill="WHITE" glyphName="DOLLAR" layoutX="14.0" layoutY="99.0" size="7EM" />
                                           <Label layoutX="115.0" layoutY="110.0" text="Today's Income" textFill="WHITE">
                                              <font>
                                                 <Font name="Segoe UI" size="15.0" />
