@@ -100,7 +100,7 @@
                <center>
                   <AnchorPane prefHeight="565.0" prefWidth="857.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="269.0" layoutY="183.0" prefHeight="565.2537152517029" prefWidth="900.5372877964394" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="269.0" layoutY="183.0" prefHeight="565.2537152517029" prefWidth="900.5372877964394" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="10.0" layoutY="13.0" prefHeight="173.0" prefWidth="882.0" stylesheets="@../../Styles/dashboard.css">
                                  <styleClass>
@@ -208,7 +208,7 @@
                               <Separator layoutX="11.0" layoutY="193.0" prefHeight="4.0" prefWidth="882.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="product_form" layoutX="95.0" layoutY="89.0" prefHeight="565.2537152517029" prefWidth="900.5372877964394" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="product_form" layoutX="95.0" layoutY="89.0" prefHeight="565.2537152517029" prefWidth="900.5372877964394" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Separator layoutY="12.0" orientation="VERTICAL" prefHeight="542.0" prefWidth="10.0" />
                               <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="542.0" prefWidth="239.0" stylesheets="@../../Styles/dashboard.css">

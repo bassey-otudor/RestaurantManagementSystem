@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 
 public class dashboardController implements Initializable {
@@ -135,6 +139,46 @@ public class dashboardController implements Initializable {
 
     @FXML
     private Label username;
+
+    private Connection connect;
+    private PreparedStatement prepare;
+    private Statement statement;
+    private ResultSet result;
+
+    public void addFood() {
+        String sql = "INSERT INTO category (product_id, product_name, type, price, status)" + "VALUES (?,?,?,?,?)";
+
+        connect = database.connectDB();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            prepare.setString(1, food_ID.getText());
+            prepare.setString(2, food_name.getText());
+            prepare.setString(3, (String)food_type.getSelectionModel().getSelectedItem());
+            prepare.setString(4, food_price.getText());
+            prepare.setString(5, (String)food_status.getSelectionModel().getSelectedItem());
+
+            Alert alert;
+
+            if(food_ID.getText().isEmpty()
+                    || food_name.getText().isEmpty()
+                    || food_type.getSelectionModel() == null
+                    || food_price.getText().isEmpty() || food_status.getSelectionModel() == null) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all fields");
+                alert.showAndWait();
+
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     // Available food/drinks
