@@ -171,6 +171,26 @@ public class dashboardController implements Initializable {
                 alert.showAndWait();
 
             } else {
+                String checkData = "SELECT product_ID FROM category WHERE product_ID = '" + food_ID.getText() + "'";
+
+                connect = database.connectDB();
+                statement = connect.createStatement();
+                result = statement.executeQuery(checkData);
+
+                if(result.next()) {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Product ID: " + food_ID.getText() + "already exists.");
+                    alert.showAndWait();
+                }else {
+                    prepare.executeQuery();
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Added!");
+                    alert.showAndWait();
+                }
 
             }
 
