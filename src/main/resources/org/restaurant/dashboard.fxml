@@ -232,27 +232,27 @@
                                        </font></JFXTextField>
                                     <JFXComboBox fx:id="food_type" focusColor="#3796a7" layoutX="22.0" layoutY="144.0" prefWidth="199.0" promptText="Type" unFocusColor="#25bcbf" />
                                     <JFXComboBox fx:id="food_status" focusColor="#3796a7" layoutX="22.0" layoutY="245.0" prefWidth="199.0" promptText="Status" unFocusColor="#25bcbf" />
-                                    <JFXButton fx:id="food_add" layoutX="22.0" layoutY="299.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Add">
+                                    <JFXButton fx:id="food_add" layoutX="22.0" layoutY="299.0" onAction="#addFood" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Add">
                                        <styleClass>
                                           <String fx:value="add-btn" />
                                           <String fx:value="btn" />
                                           <String fx:value="btn-shadow" />
                                        </styleClass>
                                     </JFXButton>
-                                    <JFXButton fx:id="food_update" layoutX="130.0" layoutY="299.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Update">
+                                    <JFXButton fx:id="food_update" layoutX="130.0" layoutY="299.0" onAction="#updateFood" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Update">
                                        <styleClass>
                                           <String fx:value="-update-btn" />
                                           <String fx:value="btn" />
                                           <String fx:value="btn-shadow" />
                                        </styleClass>
                                     </JFXButton>
-                                    <JFXButton fx:id="food_clear" layoutX="22.0" layoutY="345.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Clear">
+                                    <JFXButton fx:id="food_clear" layoutX="22.0" layoutY="345.0" onAction="#clearFood" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Clear">
                                        <styleClass>
                                           <String fx:value="clear-btn" />
                                           <String fx:value="btn-shadow" />
                                        </styleClass>
                                     </JFXButton>
-                                    <JFXButton fx:id="food_delete" layoutX="130.0" layoutY="345.0" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Delete">
+                                    <JFXButton fx:id="food_delete" layoutX="130.0" layoutY="345.0" onAction="#deleteFood" prefHeight="30.0" prefWidth="90.0" stylesheets="@../../Styles/dashboard.css" text="Delete">
                                        <styleClass>
                                           <String fx:value="delete-btn" />
                                           <String fx:value="btn-shadow" />
@@ -271,7 +271,7 @@
                                           <Font name="Segoe UI" size="12.179104804992676" />
                                        </font>
                                     </JFXTextField>
-                                    <TableView layoutX="28.0" layoutY="100.0" prefHeight="431.0" prefWidth="571.0" stylesheets="@../../Styles/dashboard.css">
+                                    <TableView fx:id="food_tableView" layoutX="28.0" layoutY="100.0" onMouseClicked="#selectFood" prefHeight="431.0" prefWidth="571.0" stylesheets="@../../Styles/dashboard.css">
                                       <columns>
                                         <TableColumn fx:id="food_col_productID" prefWidth="75.0" text="Product ID" />
                                         <TableColumn fx:id="food_col_productName" prefWidth="154.74636840820312" text="Product Name" />

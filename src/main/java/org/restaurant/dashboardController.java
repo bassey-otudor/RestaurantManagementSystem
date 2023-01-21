@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -63,19 +64,22 @@ public class dashboardController implements Initializable {
     private JFXButton food_clear;
 
     @FXML
-    private TableColumn<?, ?> food_col_price;
+    private TableView<category> food_tableView;
 
     @FXML
-    private TableColumn<?, ?> food_col_productID;
+    private TableColumn<category,String> food_col_price;
 
     @FXML
-    private TableColumn<?, ?> food_col_productName;
+    private TableColumn<category,String> food_col_productID;
 
     @FXML
-    private TableColumn<?, ?> food_col_status;
+    private TableColumn<category,String> food_col_productName;
 
     @FXML
-    private TableColumn<?, ?> food_col_type;
+    private TableColumn<category,String> food_col_status;
+
+    @FXML
+    private TableColumn<category,String> food_col_type;
 
     @FXML
     private JFXButton food_delete;
@@ -145,6 +149,9 @@ public class dashboardController implements Initializable {
     private Statement statement;
     private ResultSet result;
 
+
+    // Adding a food to the database
+    // configuring Add button
     public void addFood() {
         String sql = "INSERT INTO category (product_id, product_name, type, price, status)" + "VALUES (?,?,?,?,?)";
 
@@ -160,10 +167,13 @@ public class dashboardController implements Initializable {
 
             Alert alert;
 
+            // checking if the user filled all fields
             if(food_ID.getText().isEmpty()
                     || food_name.getText().isEmpty()
                     || food_type.getSelectionModel() == null
-                    || food_price.getText().isEmpty() || food_status.getSelectionModel() == null) {
+                    || food_price.getText().isEmpty()
+                    || food_status.getSelectionModel() == null) {
+
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -177,45 +187,152 @@ public class dashboardController implements Initializable {
                 statement = connect.createStatement();
                 result = statement.executeQuery(checkData);
 
+                // checking if the food already exist
                 if(result.next()) {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Product ID: " + food_ID.getText() + "already exists.");
+                    alert.setContentText("Food ID: " + food_ID.getText() + "already exists.");
                     alert.showAndWait();
                 }else {
-                    prepare.executeQuery();
+                    prepare.executeUpdate();
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Added!");
                     alert.showAndWait();
-                }
 
+                    // show the data
+                    showData();
+                    // clear all fields
+                    clearFood();
+                }
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
     }
 
+    // configuring food_update button
+    public void updateFood() {
+        String sql = "UPDATE category SET product_name = '" + food_name.getText() + "', type = '"
+                + food_type.getSelectionModel().getSelectedItem() + "', price = '"
+                + food_price.getText() + "', status = '" + food_status.getSelectionModel().getSelectedItem()
+                + "' WHERE product_id = '" + food_ID.getText() + "'";
 
+        connect = database.connectDB();
+        try {
+            Alert alert;
+
+            // making sure there are no empty fields
+            if(food_ID.getText().isEmpty()
+                || food_name.getText().isEmpty()
+                || food_type.getSelectionModel() == null
+                || food_price.getText().isEmpty()
+                || food_status.getSelectionModel() == null) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all fields");
+                alert.showAndWait();
+            }else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Are you sure you want to UPDATE Food ID" + food_ID.getText() + "?");
+
+                Optional<ButtonType> option  = alert.showAndWait();
+
+                if(option.get().equals(ButtonType.OK)) {
+                    statement = connect.createStatement();
+                    statement.executeUpdate(sql);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Updated!");
+                    alert.showAndWait();
+
+                    // show the data
+                    showData();
+                    // clear all fields
+                    clearFood();
+
+                } else {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Cancelled");
+                    alert.showAndWait();
+                }
+            }
+        } catch (Exception e) { e.printStackTrace();}
+    }
+
+    // configuring food_delete button
+    public void deleteFood() {
+        String sql = "DELETE FROM category WHERE product_id = '" + food_ID.getText() + "'";
+        connect = database.connectDB();
+
+        try {
+            Alert alert;
+
+            // making sure there are no empty fields
+            if(food_ID.getText().isEmpty()) {
+
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all fields");
+                alert.showAndWait();
+            }else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Are you sure you want to DELETE Food ID: " + food_ID.getText() + "?");
+
+                Optional<ButtonType> option  = alert.showAndWait();
+
+                if(option.get().equals(ButtonType.OK)) {
+                    statement = connect.createStatement();
+                    statement.executeUpdate(sql);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Deleted!");
+                    alert.showAndWait();
+
+                    // show the data
+                    showData();
+                    // clear all fields
+                    clearFood();
+
+                } else {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Cancelled");
+                    alert.showAndWait();
+                }
+            }
+
+        }catch (Exception e) {e.printStackTrace();}
+    }
+
+    // configuring food_clear button
+    public void clearFood() {
+        food_ID.setText("");
+        food_name.setText("");
+        food_type.getSelectionModel().clearSelection();
+        food_price.setText("");
+        food_status.getSelectionModel().clearSelection();
+    }
 
     // Available food/drinks
+
+    // configuring food_type field
     private String [] status = {"Available", "Not Available"};
-    private String [] categories = {"Meals", "Drink"};
-
-    public void foodCategories() {
-        List<String> listCategories = new ArrayList<>();
-
-        for(String data:categories) {
-            listCategories.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listCategories);
-        food_type.setItems(listData);
-    }
-
     public void foodStatus() {
         List<String> listStatus = new ArrayList<>();
 
@@ -226,6 +343,75 @@ public class dashboardController implements Initializable {
         ObservableList listData = FXCollections.observableArrayList(listStatus);
         food_status.setItems(listData);
 
+    }
+
+    public ObservableList<category> listData() {
+        ObservableList<category> listData = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM category";
+        connect = database.connectDB();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            category cat;
+            while(result.next()) {
+                cat = new category(result.getString("product_id"), result.getString("product_name")
+                        , result.getString("type"), result.getDouble("price")
+                        , result.getString("status"));
+
+                listData.add(cat);
+
+            }
+        } catch (Exception e) {e.printStackTrace();}
+
+        return listData;
+    }
+
+    private ObservableList<category> foodList;
+
+    // show data on the table
+    public void showData() {
+        foodList = listData();
+
+        food_col_productID.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        food_col_productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        food_col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
+        food_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        food_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        food_tableView.setItems(foodList);
+;    }
+
+
+    // available selection
+    // show food values in their respective fields
+    public void selectFood() {
+        category catData = food_tableView.getSelectionModel().getSelectedItem();
+        int num = food_tableView.getSelectionModel().getSelectedIndex();
+
+        if((num -1) < -1) {
+            return;
+        }
+
+        food_ID.setText(catData.getProductId());
+        food_name.setText(catData.getProductName());
+        food_price.setText(String.valueOf(catData.getPrice()));
+
+    }
+
+    // configuring food_type button
+    private String [] types = {"Meals", "Drink"};
+    public void foodType() {
+        List<String> listTypes = new ArrayList<>();
+
+        for(String data:types) {
+            listTypes.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listTypes);
+        food_type.setItems(listData);
     }
 
     // switch forms
@@ -239,6 +425,8 @@ public class dashboardController implements Initializable {
             dashboard_form.setVisible(false);
             product_form.setVisible(true);
             order_form.setVisible(false);
+
+            showData();
         } else if(event.getSource() == orders_btn) {
             dashboard_form.setVisible(false);
             product_form.setVisible(false);
@@ -293,9 +481,7 @@ public class dashboardController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
     }
     public void displayUsername() {
         String user = data.username;
@@ -303,9 +489,7 @@ public class dashboardController implements Initializable {
         username.setText(user);
     }
 
-    public void close() {
-        System.exit(0);
-    }
+    public void close() {System.exit(0);}
 
     public void minimise() {
         Stage stage = (Stage) main_form.getScene().getWindow();
@@ -316,7 +500,8 @@ public class dashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayUsername();
         foodStatus();
-        foodCategories();
+        foodType();
+        showData();
 
     }
 }
