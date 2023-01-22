@@ -2,6 +2,8 @@ package org.restaurant;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -239,7 +241,7 @@ public class dashboardController implements Initializable {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to UPDATE Food ID" + food_ID.getText() + "?");
+                alert.setContentText("Are you sure you want to UPDATE Food ID: " + food_ID.getText() + "?");
 
                 Optional<ButtonType> option  = alert.showAndWait();
 
@@ -358,7 +360,7 @@ public class dashboardController implements Initializable {
             category cat;
             while(result.next()) {
                 cat = new category(result.getString("product_id"), result.getString("product_name")
-                        , result.getString("type"), result.getDouble("price")
+                        , result.getString("type"), result.getInt("price")
                         , result.getString("status"));
 
                 listData.add(cat);
@@ -369,8 +371,43 @@ public class dashboardController implements Initializable {
         return listData;
     }
 
-    private ObservableList<category> foodList;
 
+    // configuring search field and search
+
+    public void searchFood() {
+        FilteredList<category> filter = new FilteredList<>(foodList, e -> true);
+
+        food_search.textProperty().addListener((observabl, newValue, oldValue) -> {
+            filter.setPredicate(predicateCategory -> {
+
+                if(newValue.isEmpty() || newValue == null) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if(predicateCategory.getProductId().toLowerCase().contains(searchKey)) {
+                    return true;
+                }else if(predicateCategory.getProductName().toLowerCase().contains(searchKey)) {
+                    return true;
+                }else if(predicateCategory.getType().toLowerCase().contains(searchKey)) {
+                    return true;
+                }else if(predicateCategory.getPrice().toString().contains(searchKey)) {
+                    return true;
+                }else if(predicateCategory.getStatus().toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+
+                return false;
+            });
+        });
+
+        SortedList<category> sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(food_tableView.comparatorProperty());
+        food_tableView.setItems(sortList);
+    }
+
+    private ObservableList<category> foodList;
     // show data on the table
     public void showData() {
         foodList = listData();
@@ -427,6 +464,7 @@ public class dashboardController implements Initializable {
             order_form.setVisible(false);
 
             showData();
+            searchFood();
         } else if(event.getSource() == orders_btn) {
             dashboard_form.setVisible(false);
             product_form.setVisible(false);
