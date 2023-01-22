@@ -5,10 +5,10 @@ public class category {
     private String productId;
     private String productName;
     private String type;
-    private Double price;
+    private Integer price;
     private String status;
 
-    public category(String productId, String productName, String type, Double price, String status) {
+    public category(String productId, String productName, String type, Integer price, String status) {
         this.productId = productId;
         this.productName = productName;
         this.type = type;
@@ -24,7 +24,7 @@ public class category {
 
     public String getType() {return type;}
 
-    public double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 

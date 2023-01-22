@@ -33,7 +33,7 @@
             </AnchorPane>
             <AnchorPane layoutX="298.7462601520407" layoutY="9.0" prefHeight="408.0" prefWidth="302.0" styleClass="right-form" stylesheets="@../../Styles/main.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">
                <children>
-                  <Button fx:id="close" layoutX="275.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../../Styles/main.css">
+                  <Button fx:id="close" layoutX="252.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="49.0" styleClass="close" stylesheets="@../../Styles/main.css">
                      <graphic>
                         <FontAwesomeIcon fill="WHITE" glyphName="CLOSE" styleClass="close" />
                      </graphic>

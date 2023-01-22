@@ -266,12 +266,12 @@
                                     <String fx:value="white-bg" />
                                  </styleClass>
                                  <children>
-                                    <JFXTextField fx:id="food_search" focusColor="#3796a7" labelFloat="true" layoutX="24.0" layoutY="44.0" prefHeight="30.0" prefWidth="280.0" promptText="Search" unFocusColor="#25bcbf">
+                                    <JFXTextField fx:id="food_search" focusColor="#3796a7" labelFloat="true" layoutX="24.0" layoutY="44.0" onKeyTyped="#searchFood" prefHeight="30.0" prefWidth="280.0" promptText="Search" unFocusColor="#25bcbf">
                                        <font>
                                           <Font name="Segoe UI" size="12.179104804992676" />
                                        </font>
                                     </JFXTextField>
-                                    <TableView fx:id="food_tableView" layoutX="28.0" layoutY="100.0" onMouseClicked="#selectFood" prefHeight="431.0" prefWidth="571.0" stylesheets="@../../Styles/dashboard.css">
+                                    <TableView fx:id="food_tableView" layoutX="28.0" layoutY="100.0" onKeyTyped="#searchFood" onMouseClicked="#selectFood" prefHeight="431.0" prefWidth="571.0" stylesheets="@../../Styles/dashboard.css">
                                       <columns>
                                         <TableColumn fx:id="food_col_productID" prefWidth="75.0" text="Product ID" />
                                         <TableColumn fx:id="food_col_productName" prefWidth="154.74636840820312" text="Product Name" />
